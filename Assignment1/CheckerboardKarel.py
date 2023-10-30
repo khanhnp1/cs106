@@ -8,7 +8,10 @@ a checkerboard using beepers, as described in Assignment 1.
 You should make sure that your program works for all of the 
 sample worlds supplied in the starter folder.
 """
-
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
 
 def main():
     """
@@ -17,7 +20,26 @@ def main():
     starting to write your own code. You should also delete this
     comment and replace it with a better, more descriptive one.
     """
-    pass
+    check = True
+    left = True
+    while True:
+        if (check):
+            put_beeper()
+        if front_is_blocked(): 
+            if (left_is_clear() and left == True):
+                turn_left()
+                move()
+                turn_left()
+            elif (right_is_clear() and left == False):
+                turn_right()
+                move()
+                turn_right()
+            else:
+                break
+            left = not left
+        else:
+            move()
+        check = not check
 
 
 # There is no need to edit code beyond this point

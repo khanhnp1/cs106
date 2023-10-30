@@ -10,6 +10,14 @@ newspaper (represented by a beeper, of course), and then return
 to its initial position in the upper left corner of the house.
 """
 
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+
+def turn_around():
+    turn_left()
+    turn_left()
 
 def main():
     """
@@ -18,7 +26,19 @@ def main():
     starting to write your own code. You should also delete this
     comment and replace it with a better, more descriptive one.
     """
-    pass
+    move()
+    move()
+    turn_right()
+    move()
+    turn_left()
+    move()
+    pick_beeper()
+    turn_around()
+    move()
+    move()
+    move()
+    turn_right()
+    move()
 
 
 # There is no need to edit code beyond this point
