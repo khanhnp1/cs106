@@ -35,8 +35,8 @@ def highlight_fires(filename):
     image = SimpleImage(filename)
     # Your code to highlight the fires goes here
     for pixel in image:
-        average = (pixel.red + pixel.green + pixel. blue) // 3
-        if (pixel.red >= (INTENSITY_THRESHOLD) * average):
+        average = (INTENSITY_THRESHOLD) * (pixel.red + pixel.green + pixel. blue) // 3
+        if (pixel.red >= average):
             pixel.red = 0xff
             pixel.green = 0
             pixel.blue = 0
