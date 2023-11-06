@@ -16,7 +16,43 @@ def play_game(secret_word):
     """
     Add your code (remember to delete the "pass" below)
     """
-    pass
+    guess_left = INITIAL_GUESSES
+    letter_left = len(secret_word)
+    guess_str = "-" * letter_left
+
+    while (guess_left > 0):
+        print("The word now looks like this: ", guess_str)
+        print("You have", guess_left, "guesses left")
+        guess_letter = input("Type a single letter here, then press enter: ")
+        guess_letter = guess_letter.upper()
+        is_correct = 0
+
+        if len(guess_letter) > 1:
+            print("Guess should only be a single character")
+            continue
+        
+        for i in range (len(secret_word)):
+            if secret_word[i] == guess_letter:
+                is_correct = 1
+                if guess_str[i] == '-':
+                    letter_left -= 1
+                    guess_str = guess_str[:i] + guess_letter + guess_str[i + 1:]
+        
+        if (is_correct == 0):
+            guess_left -= 1
+            print("There are no", guess_letter,"'s in the word")
+        else:
+            print("That guess is correct.")
+        
+        if (letter_left == 0):
+            print("Congratulations, the word is:", guess_str)
+            break
+                
+    if (guess_left == 0):
+        print("Sorry, you lost. The secret word was: ", secret_word)
+    
+    return
+
 
 
 def get_word():
@@ -29,13 +65,14 @@ def get_word():
     select a word from a much larger list by reading a list of words
     from the file specified by the constant LEXICON_FILE.
     """
-    index = random.randrange(3)
-    if index == 0:
-        return 'HAPPY'
-    elif index == 1:
-        return 'PYTHON'
-    else:
-        return 'COMPUTER'
+    secret_word = ""
+    index = random.randint(1, 121757)
+    with open (LEXICON_FILE) as fp:
+        for count, line in enumerate(fp):
+            if count == index:
+                secret_word = line.strip()
+
+    return secret_word
 
 
 def main():
